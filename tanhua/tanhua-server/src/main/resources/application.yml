@@ -1,0 +1,73 @@
+server:
+  port: 81
+dubbo:
+  application:
+    name: tanhua-server
+  registry:
+    address: zookeeper://192.168.211.160:2181
+  consumer:
+    check: false
+# log
+logging:
+  level:
+    root: info
+    com:
+      tanhua: debug
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %msg - %logger{15}%n\'
+# 第三配置
+tanhua:
+  # jwt的密钥itcast_tanhua md5
+  secret: 76bd425b6f29f7fcc2e0bfc286043df1
+  # redis key prefix for validate code
+  redisValidateCodeKeyPrefix: VALIDATECODE_
+  # 阿里大宇短信配置
+  sms:
+    signName: 黑马程序员
+    parameterName: code
+    validateCodeTemplateCode: SMS_164508533
+    accessKeyId: LTAI5tDRHQk6hfL9JWTcDpWo
+    accessKeySecret: UP9EpSxxSYWcMLNpdBSYMW1keEkdL3
+  # oss存储
+  oss:
+    endpoint: http://oss-cn-shenzhen.aliyuncs.com
+    bucketName: sz-114
+    url: https://sz-114.oss-cn-shenzhen.aliyuncs.com
+    accessKeyId: LTAI5tDRHQk6hfL9JWTcDpWo
+    accessKeySecret: UP9EpSxxSYWcMLNpdBSYMW1keEkdL3
+  # 百度人脸检测
+  face:
+    appId: 22949516
+    apiKey: uDkEBDhtO02soeMB6kuMZTZi
+    secretKey: sMGUX8tzPhc0eBfvy3rbGYuXiK6MZCEF
+  huanxin:
+    url: http://a1.easemob.com/
+    orgName: 1100210128203775
+    appName: tanhua
+    clientId: YXA69S_vv-QlQmaJcXFr8VgFuA
+    clientSecret: YXA6geW8sILBJtyVk2JEPmgrWG1P99k
+spring:
+  redis:
+    host: 192.168.211.160
+    port: 6379
+  servlet:
+    multipart:
+      max-file-size: 10MB
+# ===================================================================
+# 分布式文件系统FDFS配置
+# ===================================================================
+fdfs:
+  so-timeout: 1500
+  connect-timeout: 600
+  #缩略图生成参数
+  thumb-image:
+    width: 150
+    height: 150
+  #TrackerList参数,支持多个
+  tracker-list: 192.168.211.160:22122
+  web-server-url: http://192.168.211.160:8888/
+
+rocketmq:
+  name-server: 192.168.211.160:9876
+  producer:
+    group: tanhua
